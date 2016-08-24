@@ -9,13 +9,13 @@ const employeeData = [
 ];
 
 const Employee = React.createClass({
-  getInitialState: () => {
+  getInitialState() {
     return {
       employees: employeeData,
       employee: null
     };
   },
-  render: function() {
+  render() {
     return (
       <div>
         <EmployeeTable employees={this.state.employees} editEmployee={this.editEmployee}/>
@@ -27,18 +27,18 @@ const Employee = React.createClass({
       </div>
     )
   },
-  addEmployee: function(employee) {
+  addEmployee(employee) {
     const employeeModified = this.state.employees.slice();
     employee.id = this.state.employees.length + 1;
     employeeModified.push(employee);
     this.setState({employees: employeeModified});
   },
-  editEmployee: function(employee) {
+  editEmployee(employee) {
     this.setState({employee:employee});
   },
-  saveEmployee: function(employee) {
+  saveEmployee(employee) {
     const employeeModified = this.state.employees.slice();
-    Object.keys(employeeModified).map(function(key) {
+    Object.keys(employeeModified).map((key) => {
       employeeModified[key] = (employeeModified[key].id === employee.id) ? employee : employeeModified[key];
     });
     this.setState({employees: employeeModified, employee: null});

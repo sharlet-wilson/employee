@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EmployeeRow = React.createClass({
-  render: function() {
+  render() {
     console.log("Rendering EmployeeRow:", this.props.employee);
     return (
       <tr>
@@ -14,16 +14,16 @@ const EmployeeRow = React.createClass({
       </tr>
     )
   },
-  onClick: function() {
+  onClick() {
     this.props.onClick(this.props.employee);
   }
 });
 
 const EmployeeTable = React.createClass({
-  onClick: function(employee){
+  onClick(employee){
     this.props.editEmployee(employee);
   },
-  render: function() {
+  render() {
     const employeeRows = this.props.employees.map((employee) => {
       return <EmployeeRow key={employee.id} employee={employee} onClick={this.onClick}/>
     });

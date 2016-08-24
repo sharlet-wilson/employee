@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EmployeeAdd = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       name: "",
       designation: "",
@@ -10,7 +10,7 @@ const EmployeeAdd = React.createClass({
       btnName:"Add Employee"
     };
   },
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       name: (nextProps.employee) ? nextProps.employee.name : "",
       designation: (nextProps.employee) ? nextProps.employee.designation : "",
@@ -19,12 +19,12 @@ const EmployeeAdd = React.createClass({
       btnName: (nextProps.employee) ? "Save" : "Add Employee",
     });
   },
-  onChange: function(name, e) {
+  onChange(name, e) {
     const change = {};
     change[name] = e.target.value;
     this.setState(change);
   },
-  render: function() {
+  render() {
     return (
       <div>
         <form name="employeeData">
@@ -46,7 +46,7 @@ const EmployeeAdd = React.createClass({
     )
   },
 
-  handleAdd: function(e) {
+  handleAdd(e) {
     e.preventDefault();
     const form = document.forms.employeeData;
     this.props.addEmployee({name: form.name.value, designation: form.designation.value, department: form.department.value, contact: form.contact.value});
@@ -54,7 +54,7 @@ const EmployeeAdd = React.createClass({
     form.name.value = ""; form.designation.value = "";form.department.value = ""; form.contact.value = "";
   },
 
-  handleEdit: function(e) {
+  handleEdit(e) {
     e.preventDefault();
     const form = document.forms.employeeData;
     this.props.saveEmployee({id:this.props.employee.id, name: form.name.value, designation: form.designation.value, department: form.department.value, contact: form.contact.value});
